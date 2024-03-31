@@ -1,5 +1,6 @@
 ﻿using Entities.Models;
 using Microsoft.EntityFrameworkCore;
+using Repositories.EfCore.Config;
 using System;
 using System.Collections.Generic;
 using System.Linq;
