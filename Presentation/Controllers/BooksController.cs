@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using Entities.Exceptions;
+using Entities.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
@@ -33,8 +34,7 @@ namespace Presentation.Controllers
         {
                 var book = _manager.BookService.GetOneBookById(id, false);
 
-                if (book == null)
-                    return NotFound();
+
                 return Ok(book);
         }
 
@@ -79,7 +79,6 @@ namespace Presentation.Controllers
                 //check
 
                 var entity = _manager.BookService.GetOneBookById(id, true);
-                if (entity is null) return NotFound(); //404
 
                 bookPatch.ApplyTo(entity);
                 _manager.BookService.UpdateOneBook(id, entity, true);
