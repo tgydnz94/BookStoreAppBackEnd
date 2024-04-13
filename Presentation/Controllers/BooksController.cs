@@ -17,7 +17,6 @@ namespace Presentation.Controllers
     public class BooksController : ControllerBase
     {
         private readonly IServiceManager _manager;
-
         public BooksController(IServiceManager manager)
         {
             _manager = manager;
@@ -26,67 +25,78 @@ namespace Presentation.Controllers
         [HttpGet]
         public IActionResult GetAllBooks()
         {
-                var books = _manager.BookService.GetAllBooks(false);
-                return Ok(books);
+            var books = _manager.BookService.GetAllBooks(false);
+            return Ok(books);
         }
 
         [HttpGet("{id:int}")]
         public IActionResult GetOneBook([FromRoute(Name = "id")] int id)
         {
-                var book = _manager.BookService.GetOneBookById(id, false);
+            var book = _manager
+            .BookService
+            .GetOneBookById(id, false);
 
-
-                return Ok(book);
+            return Ok(book);
         }
 
         [HttpPost]
-        public IActionResult CreateOneBook([FromBody] Book book)
+        public IActionResult CreateOneBook([FromBody] BookDtoForInsertion bookDto)
         {
-                if (book == null)
-                    return BadRequest();
-                _manager.BookService.CreateOneBook(book);
+            if (bookDto is null)
+                return BadRequest(); // 400 
 
-                return StatusCode(201, book);
+            if (!ModelState.IsValid)
+                return UnprocessableEntity(ModelState);
 
+
+            var book = _manager.BookService.CreateOneBook(bookDto);
+
+            return StatusCode(201, book); // CreatedAtRoute()
         }
 
         [HttpPut("{id:int}")]
-        public IActionResult UpdateOneBook([FromRoute(Name = "id")] int id, [FromBody] BookDtoForUpdate bookDto)
+        public IActionResult UpdateOneBook([FromRoute(Name = "id")] int id,
+            [FromBody] BookDtoForUpdate bookDto)
         {
+            if (bookDto is null)
+                return BadRequest(); // 400 
 
-                if (bookDto is null)
-                    return BadRequest();
-                //check book?
+            if (!ModelState.IsValid)
+                return UnprocessableEntity(ModelState);
 
-                _manager.BookService.UpdateOneBook(id, bookDto, true);
-
-                return NoContent();
-
+            _manager.BookService.UpdateOneBook(id, bookDto, false);
+            return NoContent(); // 204
         }
 
         [HttpDelete("{id:int}")]
         public IActionResult DeleteOneBook([FromRoute(Name = "id")] int id)
         {
-                _manager.BookService.DeleteOneBook(id, false);
-
-                return NoContent();
-
+            _manager.BookService.DeleteOneBook(id, false);
+            return NoContent();
         }
+
 
         [HttpPatch("{id:int}")]
         public IActionResult PartiallyUpdateOneBook([FromRoute(Name = "id")] int id,
-            [FromBody] JsonPatchDocument<Book> bookPatch)
+            [FromBody] JsonPatchDocument<BookDtoForUpdate> bookPatch)
         {
-                //check
 
-                var entity = _manager.BookService.GetOneBookById(id, true);
+            if (bookPatch is null)
+                return BadRequest(); // 400
 
-                
+            var result = _manager.BookService.GetOneBookForPatch(id, false);
 
-                bookPatch.ApplyTo(entity);
-                _manager.BookService.UpdateOneBook(id, new BookDtoForUpdate(entity.Id,entity.Title,entity.Price), true);
+            bookPatch.ApplyTo(result.bookDtoForUpdate, ModelState);
 
-                return NoContent();
+            TryValidateModel(result.bookDtoForUpdate);
+
+            if (!ModelState.IsValid)
+                return UnprocessableEntity(ModelState);
+
+            _manager.BookService.SaveChangesForPatch(result.bookDtoForUpdate, result.book);
+
+            return NoContent(); // 204
         }
     }
+}
 }
