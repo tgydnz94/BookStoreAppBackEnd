@@ -15,7 +15,7 @@ namespace Repositories.EfCore.Config
         {
             builder.HasData
                 (
-                    new Book { Id=1,Title="Karagöz ve Hacivat", Price=75}
+                    new Book { Id=1,Title="Karagöz ve Hacivat", Price=75, CategoryId =2}
                 );
         }
     }

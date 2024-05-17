@@ -16,5 +16,8 @@ namespace Repositories.Contracts
         Task<PagedList<Book>> GetAllBooksAsync(BookParameters bookParameters, bool trackChanges);
         Task<Book> GetOneBookByIdAsync(int id, bool trackChanges);
         Task<List<Book>> GetAllBooksAsync(bool trackChanges);
+
+
+        Task<IEnumerable<Book>> GetAllBooksWithDetailsAsync(bool trackChanges);
     }
 }
