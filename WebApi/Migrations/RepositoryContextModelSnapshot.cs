@@ -198,19 +198,19 @@ namespace WebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4b2a7e99-8a86-4525-9d0b-837c41c5c21d",
+                            Id = "9c6ff2fb-a144-4c53-8464-88f14fddf193",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "b4aa4227-a4b0-4c52-867c-00dce83f841a",
+                            Id = "62cebadd-7ea2-477b-820a-6d5b4456dd99",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
-                            Id = "a12c9168-c504-47c1-83e7-b1b123cb1d63",
+                            Id = "17ff4bb3-f295-4441-88c7-7c4aaf406460",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
