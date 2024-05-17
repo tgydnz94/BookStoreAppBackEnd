@@ -10,3 +10,15 @@
 2024-05-17 04:15:33.0152 Info Configuration initialized.
 2024-05-17 04:15:33.8785 Info AppDomain Shutting down. LogFactory closing...
 2024-05-17 04:15:33.8785 Info LogFactory has been closed.
+2024-05-17 09:07:25.4545 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-05-17 09:07:25.4813 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-05-17 09:07:25.4877 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Tugay\Documents\Visual Studio 2022\pratik\BookStoreAppBackEnd\WebApi\nLog.config
+2024-05-17 09:07:25.4877 Info Configuration initialized.
+2024-05-17 09:07:26.4485 Info AppDomain Shutting down. LogFactory closing...
+2024-05-17 09:07:26.4537 Info LogFactory has been closed.
+2024-05-17 09:07:37.5214 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-05-17 09:07:37.5335 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-05-17 09:07:37.5335 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Tugay\Documents\Visual Studio 2022\pratik\BookStoreAppBackEnd\WebApi\nLog.config
+2024-05-17 09:07:37.5477 Info Configuration initialized.
+2024-05-17 09:07:38.4373 Info AppDomain Shutting down. LogFactory closing...
+2024-05-17 09:07:38.4373 Info LogFactory has been closed.
